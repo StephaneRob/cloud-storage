@@ -2,6 +2,16 @@ defmodule Sendup.Uploads.Upload do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @type t :: %__MODULE__{
+          filename: binary(),
+          type: binary(),
+          extension: binary(),
+          key: binary(),
+          uploaded: boolean(),
+          orphan: boolean(),
+          size: integer()
+        }
+
   @primary_key {:reference, Ecto.UUID, autogenerate: true}
   schema "sendup_uploads" do
     field :filename
@@ -27,7 +37,12 @@ defmodule Sendup.Uploads.Upload do
 
   defp set_extension(changeset) do
     filename = get_field(changeset, :filename)
-    ext = Path.extname(filename)
-    put_change(changeset, :extension, ext)
+
+    if is_binary(filename) do
+      ext = Path.extname(filename)
+      put_change(changeset, :extension, ext)
+    else
+      changeset
+    end
   end
 end
