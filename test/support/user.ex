@@ -4,5 +4,7 @@ defmodule Sendup.User do
   schema "users" do
     field :name
     field :avatar
+
+    timestamps()
   end
 end

@@ -27,6 +27,7 @@ defmodule Sendup.Uploader.Controller do
 
   def create(conn, params, uploader) do
     with {:ok, params} <- prepare_params(params, uploader),
+         {:ok, params} <- set_bucket(params, uploader),
          {:ok, upload} <- Uploads.create_upload(params),
          {:ok, url} <- Storage.presign_url(uploader, upload) do
       json(conn, %{
@@ -41,7 +42,7 @@ defmodule Sendup.Uploader.Controller do
 
   def update(conn, %{"reference" => reference}) do
     with %Upload{} = upload <- Uploads.get_upload(reference),
-         {:ok, _} <- Uploads.mark_upload_as_uploaded(upload) do
+         {:ok, _} <- Uploads.mark_as_uploaded(upload) do
       json(conn, %{})
     end
   end
@@ -56,6 +57,10 @@ defmodule Sendup.Uploader.Controller do
   end
 
   defp prepare_params(params, _), do: {:ok, params}
+
+  defp set_bucket(params, uploader) do
+    {:ok, Map.put(params, "bucket", uploader.bucket())}
+  end
 
   defp render_changeset(conn, changeset) do
     conn

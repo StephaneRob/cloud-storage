@@ -21,11 +21,12 @@ defmodule Sendup.Uploads.Upload do
     field :uploaded, :boolean, default: false
     field :orphan, :boolean, default: true
     field :size, :integer
+    field :bucket, :string
 
     timestamps(type: :utc_datetime)
   end
 
-  @required [:filename, :type, :key, :size]
+  @required [:filename, :type, :key, :size, :bucket]
   @optional [:uploaded, :orphan, :extension]
 
   def changeset(upload, attrs) do

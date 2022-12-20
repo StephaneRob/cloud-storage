@@ -8,7 +8,8 @@ defmodule Sendup.UploadsTest do
       filename: "test.jpg",
       size: 1024,
       type: "image/jpg",
-      key: "whatever/coucou.jpg"
+      key: "whatever/coucou.jpg",
+      bucket: "mybucket"
     }
     test "must create an upload w/ valid params" do
       assert {:ok, upload} = Uploads.create_upload(@valid_params)
@@ -27,16 +28,17 @@ defmodule Sendup.UploadsTest do
                {:filename, {"can't be blank", [validation: :required]}},
                {:type, {"can't be blank", [validation: :required]}},
                {:key, {"can't be blank", [validation: :required]}},
-               {:size, {"can't be blank", [validation: :required]}}
+               {:size, {"can't be blank", [validation: :required]}},
+               {:bucket, {"can't be blank", [validation: :required]}}
              ]
     end
   end
 
-  describe "mark_upload_as_uploaded/1" do
+  describe "mark_as_uploaded/1" do
     test "must create an upload w/ valid params" do
       initial_upload = insert!(:upload)
       refute initial_upload.uploaded
-      assert {:ok, upload} = Uploads.mark_upload_as_uploaded(initial_upload)
+      assert {:ok, upload} = Uploads.mark_as_uploaded(initial_upload)
       [uploaded_upload] = Sendup.Repo.all(Sendup.Uploads.Upload)
       assert uploaded_upload.reference == upload.reference
       assert uploaded_upload.reference == initial_upload.reference

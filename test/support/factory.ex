@@ -2,6 +2,16 @@ defmodule Sendup.Factory do
   @moduledoc false
   alias Sendup.Repo
 
+  def build(:log) do
+    %Sendup.Uploads.Log{}
+  end
+
+  def build(:user) do
+    %Sendup.User{
+      name: "#{System.monotonic_time()}"
+    }
+  end
+
   def build(:upload) do
     %Sendup.Uploads.Upload{
       reference: Ecto.UUID.generate(),
@@ -9,7 +19,8 @@ defmodule Sendup.Factory do
       filename: "test.jpg",
       type: "image/jpg",
       extension: ".jpg",
-      size: 1024
+      size: 1024,
+      bucket: "mybucket"
     }
   end
 

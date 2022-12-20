@@ -11,6 +11,21 @@ defmodule Sendup.Repo.Migrations.CreateS3Uploads do
       add :uploaded, :boolean, default: false, null: false
       add :size, :integer
       add :orphan, :boolean, default: true
+      add :bucket, :string, null: false
+
+      timestamps()
+    end
+
+    create table(:sendup_upload_delete_logs) do
+      add :uploads, {:array, :map}, default: []
+      add :status, :string, null: false
+
+      timestamps()
+    end
+
+    create table(:sendup_upload_logs) do
+      add :old_key, :string
+      add :new_key, :string
 
       timestamps()
     end

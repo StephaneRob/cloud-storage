@@ -5,12 +5,27 @@ defmodule <%= inspect @repo %>.Migrations.CreateS3Uploads do
     create table(:sendup_uploads, primary_key: false) do
       add :reference, :uuid, primary_key: true
       add :filename, :string, null: false
-      add :mime_type, :string, null: false
-      add :file_extension, :string, null: false
-      add :object_key, :string, null: false
+      add :type, :string, null: false
+      add :extension, :string, null: false
+      add :key, :string, null: false
       add :uploaded, :boolean, default: false, null: false
       add :size, :integer
       add :orphan, :boolean, default: true
+      add :bucket, :string, null: false
+
+      timestamps()
+    end
+
+    create table(:sendup_upload_delete_logs) do
+      add :uploads, {:array, :map}, default: []
+      add :status, :string, null: false
+
+      timestamps()
+    end
+
+    create table(:sendup_upload_logs) do
+      add :old_key, :string
+      add :new_key, :string
 
       timestamps()
     end
