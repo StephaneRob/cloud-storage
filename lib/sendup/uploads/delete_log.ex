@@ -7,7 +7,6 @@ defmodule Sendup.Uploads.DeleteLog do
 
   schema "sendup_upload_delete_logs" do
     field :uploads, {:array, :map}, default: []
-    field :status, Ecto.Enum, values: [:pending, :failed, :completed], default: :pending
 
     timestamps(type: :utc_datetime)
   end

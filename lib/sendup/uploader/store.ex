@@ -17,7 +17,7 @@ defmodule Sendup.Uploader.Store do
       @impl true
       def storage do
         @options[:storage] ||
-          Application.get_env(:sendup, :default_storage, Sendup.Storage.S3)
+          Application.get_env(:sendup, :default_storage, :s3)
       end
 
       @impl true

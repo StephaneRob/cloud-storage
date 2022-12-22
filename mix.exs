@@ -40,7 +40,8 @@ defmodule Sendup.MixProject do
       {:phoenix_html, "~> 3.2.0"},
       {:jason, "~> 1.4.0"},
       {:postgrex, ">= 0.0.0"},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:mock, "~> 0.3.0", only: :test}
     ]
   end
 end

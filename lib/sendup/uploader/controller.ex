@@ -37,6 +37,7 @@ defmodule Sendup.Uploader.Controller do
       })
     else
       {:error, %Changeset{} = changeset} -> render_changeset(conn, changeset)
+      {:error, error} -> json(conn, %{error: error})
     end
   end
 

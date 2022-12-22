@@ -22,12 +22,13 @@ defmodule Sendup.Uploads.Upload do
     field :orphan, :boolean, default: true
     field :size, :integer
     field :bucket, :string
+    field :storage, Ecto.Enum, values: [:s3], default: :s3
 
     timestamps(type: :utc_datetime)
   end
 
   @required [:filename, :type, :key, :size, :bucket]
-  @optional [:uploaded, :orphan, :extension]
+  @optional [:uploaded, :orphan, :extension, :storage]
 
   def changeset(upload, attrs) do
     upload

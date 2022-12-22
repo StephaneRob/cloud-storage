@@ -8,8 +8,7 @@ Application.put_env(:sendup, Sendup.Dummy.Endpoint,
 )
 
 defmodule Sendup.Dummy.ErrorView do
-  def render(template, assigns) do
-    IO.inspect(assigns)
+  def render(template, _assigns) do
     Phoenix.Controller.status_message_from_template(template)
   end
 end

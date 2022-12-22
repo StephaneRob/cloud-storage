@@ -1,5 +1,6 @@
 defmodule Sendup.Uploads do
   import Ecto.Query
+  alias Ecto.Multi
   alias Sendup.Uploads.{DeleteLog, Log, Upload}
 
   def create_upload(attrs \\ %{}) do
@@ -12,6 +13,26 @@ defmodule Sendup.Uploads do
     upload
     |> Ecto.Changeset.change(%{uploaded: true})
     |> repo().update()
+  end
+
+  def delete_upload(upload, delete_log) do
+    Multi.new()
+    |> Multi.run(:delete_file, fn _, _ -> Sendup.Storage.delete(upload) end)
+    |> Multi.delete(:delete_upload, upload)
+    |> Multi.run(:update_log, fn repo, _ ->
+      log = %{storage: upload.storage, bucket: upload.bucket, key: upload.key}
+
+      query =
+        from d in DeleteLog,
+          where: d.id == ^delete_log.id,
+          update: [
+            push: [uploads: ^log]
+          ]
+
+      {updated, _} = repo.update_all(query, [])
+      {:ok, updated}
+    end)
+    |> repo().transaction()
   end
 
   def mark_as_orphan(upload, orphan) do
@@ -50,8 +71,8 @@ defmodule Sendup.Uploads do
     repo().all(Deleted)
   end
 
-  def create_delete_log(uploads) do
-    %DeleteLog{uploads: Enum.map(uploads, &%{bucket: &1.bucket, key: &1.key})}
+  def create_delete_log do
+    %DeleteLog{}
     |> repo().insert()
   end
 

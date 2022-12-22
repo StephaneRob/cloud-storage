@@ -38,6 +38,14 @@ defmodule Sendup.Cleaner do
 
   defp do_clean() do
     to_delete = Uploads.to_delete(100)
-    Uploads.create_delete_log(to_delete)
+
+    if Enum.any?(to_delete) do
+      {:ok, delete_log} = Uploads.create_delete_log()
+
+      to_delete
+      |> Enum.each(fn upload ->
+        Uploads.delete_upload(upload, delete_log)
+      end)
+    end
   end
 end

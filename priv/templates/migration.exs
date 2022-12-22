@@ -12,13 +12,13 @@ defmodule <%= inspect @repo %>.Migrations.CreateS3Uploads do
       add :size, :integer
       add :orphan, :boolean, default: true
       add :bucket, :string, null: false
+      add :storage, :string, null: false
 
       timestamps()
     end
 
     create table(:sendup_upload_delete_logs) do
       add :uploads, {:array, :map}, default: []
-      add :status, :string, null: false
 
       timestamps()
     end

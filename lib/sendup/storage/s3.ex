@@ -13,4 +13,11 @@ defmodule Sendup.Storage.S3 do
       expires_in: uploader.expires_in()
     )
   end
+
+  @impl true
+  def delete(upload) do
+    upload.bucket
+    |> ExAws.S3.delete_object(upload.key)
+    |> ExAws.request()
+  end
 end

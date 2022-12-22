@@ -18,6 +18,7 @@ defmodule Sendup.Uploader.ControllerTest do
       assert Regex.match?(~r/myuploads\/.*\.jpg/, response["key"])
       [upload] = Sendup.Repo.all(Sendup.Uploads.Upload)
       assert upload.reference == response["reference"]
+      assert upload.storage == :s3
     end
 
     test "Must return errors if missing params", %{conn: conn} do
