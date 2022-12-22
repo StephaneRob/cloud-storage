@@ -2,13 +2,15 @@ defmodule Sendup.Cleaner do
   alias Sendup.Uploads
   use GenServer
 
+  @interval :timer.hours(12)
+
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts)
   end
 
   @impl true
   def init(opts) do
-    send(self(), :clean)
+    Process.send_after(self(), :clean, :timer.seconds(10))
     {:ok, opts}
   end
 
@@ -21,6 +23,7 @@ defmodule Sendup.Cleaner do
   defp clean do
     last_deleted = Uploads.get_last_deleted_batch()
     maybe_clean(last_deleted)
+    Process.send_after(self(), :clean, @interval)
   end
 
   defp maybe_clean(nil), do: do_clean()

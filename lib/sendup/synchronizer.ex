@@ -2,7 +2,7 @@ defmodule Sendup.Synchronizer do
   alias Sendup.Uploads
   use GenServer
 
-  @interval :timer.seconds(10)
+  @interval :timer.seconds(30)
 
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts)
