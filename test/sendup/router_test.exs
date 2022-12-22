@@ -1,5 +1,5 @@
 defmodule Sendup.RouterTest do
-  use Sendup.DataCase
+  use Sendup.DataCase, async: true
   import Phoenix.ConnTest
 
   defmodule MyappRouter do

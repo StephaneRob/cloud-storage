@@ -1,5 +1,5 @@
 defmodule Sendup.SchemaTest do
-  use Sendup.DataCase
+  use Sendup.DataCase, async: true
   import Sendup.Factory
 
   test "attach an avatar to a user must add line in logs" do

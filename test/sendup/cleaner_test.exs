@@ -1,5 +1,5 @@
 defmodule Sendup.CleanerTest do
-  use Sendup.DataCase
+  use Sendup.DataCase, async: true
   import Sendup.Factory
   import Mock
   alias Sendup.Uploads

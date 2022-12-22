@@ -1,8 +1,8 @@
 defmodule Sendup.SynchronizerTest do
+  use Sendup.DataCase, async: true
   alias Sendup.Uploads
   alias Sendup.Synchronizer
   import Sendup.Factory
-  use Sendup.DataCase
 
   test "must flag upload as ophan if old_key present" do
     upload = insert!(:upload, key: "upload/old_key.jpg", orphan: false)

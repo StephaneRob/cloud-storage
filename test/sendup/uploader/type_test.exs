@@ -1,5 +1,5 @@
 defmodule Sendup.Uploader.TypeTest do
-  use Sendup.DataCase
+  use Sendup.DataCase, async: true
   alias Sendup.MyUploader.Type
 
   @object %{key: "myupload/test.jpg", url: "https://cdn.com/myupload/test.jpg"}
