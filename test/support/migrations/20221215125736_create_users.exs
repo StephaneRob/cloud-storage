@@ -1,4 +1,4 @@
-defmodule Sendup.Repo.Migrations.CreateUsers do
+defmodule CloudStorage.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do

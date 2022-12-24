@@ -1,5 +1,5 @@
-defmodule Sendup.Storage.S3 do
-  @behaviour Sendup.Storage
+defmodule CloudStorage.Storage.S3 do
+  @behaviour CloudStorage.Storage
 
   @impl true
   def presign_url(uploader, upload) do

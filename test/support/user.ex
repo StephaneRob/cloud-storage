@@ -1,4 +1,4 @@
-defmodule Sendup.User do
+defmodule CloudStorage.User do
   use Ecto.Schema
 
   schema "users" do

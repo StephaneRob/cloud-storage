@@ -1,9 +1,9 @@
-defmodule Sendup.Uploader.Controller do
+defmodule CloudStorage.Uploader.Controller do
   import Phoenix.Controller
   alias Inspect.Ecto.Changeset
-  alias Sendup.Storage
-  alias Sendup.Uploads
-  alias Sendup.Uploads.Upload
+  alias CloudStorage.Storage
+  alias CloudStorage.Uploads
+  alias CloudStorage.Uploads.Upload
   alias Ecto.Changeset
 
   defmacro __using__(_) do
@@ -12,7 +12,7 @@ defmodule Sendup.Uploader.Controller do
         @uploader __MODULE__ |> Module.split() |> Enum.drop(-1) |> Module.concat()
 
         use Phoenix.Controller
-        alias Sendup.Uploader.Controller
+        alias CloudStorage.Uploader.Controller
 
         def create(conn, params) do
           Controller.create(conn, params, @uploader)

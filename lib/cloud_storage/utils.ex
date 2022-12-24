@@ -1,4 +1,4 @@
-defmodule Sendup.Utils do
+defmodule CloudStorage.Utils do
   def timestamp do
     {{y, m, d}, {hh, mm, ss}} = :calendar.universal_time()
     "#{y}#{pad(m)}#{pad(d)}#{pad(hh)}#{pad(mm)}#{pad(ss)}"

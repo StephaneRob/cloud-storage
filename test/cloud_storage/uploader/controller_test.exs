@@ -1,6 +1,6 @@
-defmodule Sendup.Uploader.ControllerTest do
-  use Sendup.ConnCase, async: true
-  import Sendup.Factory
+defmodule CloudStorage.Uploader.ControllerTest do
+  use CloudStorage.ConnCase, async: true
+  import CloudStorage.Factory
 
   describe "create/2" do
     test "Must create an upload and return a presigned url", %{conn: conn} do
@@ -16,7 +16,7 @@ defmodule Sendup.Uploader.ControllerTest do
       assert response = json_response(conn, 200)
       assert response["url"] =~ "https://s3.amazonaws.com/mybucket/myuploads"
       assert Regex.match?(~r/myuploads\/.*\.jpg/, response["key"])
-      [upload] = Sendup.Repo.all(Sendup.Uploads.Upload)
+      [upload] = CloudStorage.Repo.all(CloudStorage.Uploads.Upload)
       assert upload.reference == response["reference"]
       assert upload.storage == :s3
     end
@@ -51,7 +51,7 @@ defmodule Sendup.Uploader.ControllerTest do
       route = Routes.my_uploader_path(conn, :update, old_upload.reference)
       conn = put(conn, route)
       assert json_response(conn, 200)
-      [upload] = Sendup.Repo.all(Sendup.Uploads.Upload)
+      [upload] = CloudStorage.Repo.all(CloudStorage.Uploads.Upload)
       assert old_upload.reference == upload.reference
       assert upload.uploaded
     end

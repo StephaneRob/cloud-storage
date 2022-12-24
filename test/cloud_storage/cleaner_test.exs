@@ -1,10 +1,10 @@
-defmodule Sendup.CleanerTest do
-  use Sendup.DataCase, async: true
-  import Sendup.Factory
+defmodule CloudStorage.CleanerTest do
+  use CloudStorage.DataCase, async: true
+  import CloudStorage.Factory
   import Mock
-  alias Sendup.Uploads
-  alias Sendup.Uploads.DeleteLog
-  alias Sendup.Cleaner
+  alias CloudStorage.Uploads
+  alias CloudStorage.Uploads.DeleteLog
+  alias CloudStorage.Cleaner
 
   test_with_mock "must delete out dated uploads", ExAws, request: fn _ -> {:ok, "whatever"} end do
     u1 = insert!(:upload, bucket: "mybucket1", updated_at: ago(1))
@@ -18,9 +18,9 @@ defmodule Sendup.CleanerTest do
         updated_at: ago(31)
       )
 
-    assert Sendup.Repo.all(DeleteLog) == []
+    assert CloudStorage.Repo.all(DeleteLog) == []
     Cleaner.handle_info(:clean, nil)
-    assert [delete_log] = Sendup.Repo.all(DeleteLog)
+    assert [delete_log] = CloudStorage.Repo.all(DeleteLog)
 
     assert delete_log.uploads == [
              %{
@@ -74,9 +74,9 @@ defmodule Sendup.CleanerTest do
         updated_at: ago(31)
       )
 
-    assert Sendup.Repo.all(DeleteLog) == []
+    assert CloudStorage.Repo.all(DeleteLog) == []
     Cleaner.handle_info(:clean, nil)
-    assert [delete_log] = Sendup.Repo.all(DeleteLog)
+    assert [delete_log] = CloudStorage.Repo.all(DeleteLog)
 
     assert delete_log.uploads == [
              %{

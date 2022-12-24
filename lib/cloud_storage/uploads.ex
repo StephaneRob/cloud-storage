@@ -1,7 +1,7 @@
-defmodule Sendup.Uploads do
+defmodule CloudStorage.Uploads do
   import Ecto.Query
   alias Ecto.Multi
-  alias Sendup.Uploads.{DeleteLog, Log, Upload}
+  alias CloudStorage.Uploads.{DeleteLog, Log, Upload}
 
   def create_upload(attrs \\ %{}) do
     %Upload{}
@@ -17,7 +17,7 @@ defmodule Sendup.Uploads do
 
   def delete_upload(upload, delete_log) do
     Multi.new()
-    |> Multi.run(:delete_file, fn _, _ -> Sendup.Storage.delete(upload) end)
+    |> Multi.run(:delete_file, fn _, _ -> CloudStorage.Storage.delete(upload) end)
     |> Multi.delete(:delete_upload, upload)
     |> Multi.run(:update_log, fn repo, _ ->
       log = %{storage: upload.storage, bucket: upload.bucket, key: upload.key}
@@ -87,6 +87,6 @@ defmodule Sendup.Uploads do
   end
 
   defp repo do
-    Application.fetch_env!(:sendup, :repo)
+    Application.fetch_env!(:cloud_storage, :repo)
   end
 end

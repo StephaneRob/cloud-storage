@@ -1,4 +1,4 @@
-defmodule Sendup.Uploads.Upload do
+defmodule CloudStorage.Uploads.Upload do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -13,7 +13,7 @@ defmodule Sendup.Uploads.Upload do
         }
 
   @primary_key {:reference, Ecto.UUID, autogenerate: true}
-  schema "sendup_uploads" do
+  schema "cloud_storage_uploads" do
     field :filename
     field :type
     field :extension

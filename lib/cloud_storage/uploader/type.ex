@@ -1,4 +1,4 @@
-defmodule Sendup.Uploader.Type do
+defmodule CloudStorage.Uploader.Type do
   defmacro __using__(_) do
     quote do
       defmodule Type do

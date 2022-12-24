@@ -1,5 +1,5 @@
-defmodule Sendup.Synchronizer do
-  alias Sendup.Uploads
+defmodule CloudStorage.Synchronizer do
+  alias CloudStorage.Uploads
   use GenServer
 
   @interval :timer.seconds(30)

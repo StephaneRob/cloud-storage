@@ -13,7 +13,7 @@ defmodule <%= inspect @repo %>.Migrations.<%= @migration_name %> do
       notice json;
     BEGIN
       IF coalesce(NEW.<%= @field %>, '') != coalesce(OLD.<%= @field %>, '') THEN
-        INSERT INTO sendup_upload_logs (old_key, new_key, inserted_at, updated_at) VALUES (OLD.<%= @field %>, NEW.<%= @field %>, NOW(), NOW());
+        INSERT INTO cloud_storage_upload_logs (old_key, new_key, inserted_at, updated_at) VALUES (OLD.<%= @field %>, NEW.<%= @field %>, NOW(), NOW());
       END IF;
       RETURN NULL;
     END;

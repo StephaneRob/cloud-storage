@@ -1,9 +1,9 @@
-defmodule Sendup.MixProject do
+defmodule CloudStorage.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :sendup,
+      app: :cloud_storage,
       version: "0.1.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
@@ -17,7 +17,7 @@ defmodule Sendup.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Sendup.Application, []}
+      mod: {CloudStorage.Application, []}
     ]
   end
 

@@ -2,7 +2,7 @@ defmodule <%= inspect @repo %>.Migrations.CreateS3Uploads do
   use Ecto.Migration
 
   def change do
-    create table(:sendup_uploads, primary_key: false) do
+    create table(:cloud_storage_uploads, primary_key: false) do
       add :reference, :uuid, primary_key: true
       add :filename, :string, null: false
       add :type, :string, null: false
@@ -17,13 +17,13 @@ defmodule <%= inspect @repo %>.Migrations.CreateS3Uploads do
       timestamps()
     end
 
-    create table(:sendup_upload_delete_logs) do
+    create table(:cloud_storage_upload_delete_logs) do
       add :uploads, {:array, :map}, default: []
 
       timestamps()
     end
 
-    create table(:sendup_upload_logs) do
+    create table(:cloud_storage_upload_logs) do
       add :old_key, :string
       add :new_key, :string
 

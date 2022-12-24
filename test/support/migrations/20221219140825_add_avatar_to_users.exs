@@ -1,4 +1,4 @@
-defmodule Sendup.Repo.Migrations.AddAvatarToUsers do
+defmodule CloudStorage.Repo.Migrations.AddAvatarToUsers do
   use Ecto.Migration
 
   def up do
@@ -13,7 +13,7 @@ defmodule Sendup.Repo.Migrations.AddAvatarToUsers do
       notice json;
     BEGIN
       IF coalesce(NEW.avatar, '') != coalesce(OLD.avatar, '') THEN
-        INSERT INTO sendup_upload_logs (old_key, new_key, inserted_at, updated_at) VALUES (OLD.avatar, NEW.avatar, NOW(), NOW());
+        INSERT INTO cloud_storage_upload_logs (old_key, new_key, inserted_at, updated_at) VALUES (OLD.avatar, NEW.avatar, NOW(), NOW());
       END IF;
       RETURN NULL;
     END;

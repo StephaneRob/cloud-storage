@@ -1,0 +1,2 @@
+defmodule CloudStorage do
+end

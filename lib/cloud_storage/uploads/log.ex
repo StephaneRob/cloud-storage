@@ -1,4 +1,4 @@
-defmodule Sendup.Uploads.Log do
+defmodule CloudStorage.Uploads.Log do
   use Ecto.Schema
 
   @type t :: %__MODULE__{
@@ -6,7 +6,7 @@ defmodule Sendup.Uploads.Log do
           new_key: binary()
         }
 
-  schema "sendup_upload_logs" do
+  schema "cloud_storage_upload_logs" do
     field :old_key
     field :new_key
 

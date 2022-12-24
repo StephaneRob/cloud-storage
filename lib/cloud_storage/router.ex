@@ -1,5 +1,5 @@
-defmodule Sendup.Router do
-  defmacro sendup_routes(path, controller, options \\ []) do
+defmodule CloudStorage.Router do
+  defmacro cloud_storage_routes(path, controller, options \\ []) do
     quote bind_quoted: binding() do
       import Phoenix.Router
       put "#{path}/:reference", controller, :update, as: options[:as]

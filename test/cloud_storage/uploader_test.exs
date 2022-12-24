@@ -1,17 +1,20 @@
-defmodule Sendup.DefaultUploader do
-  use Sendup.Uploader
+defmodule CloudStorage.DefaultUploader do
+  use CloudStorage.Uploader
 end
 
-defmodule Sendup.CustomUploader do
-  use Sendup.Uploader, bucket: "app-bucket", storage_dir: "app-dir", asset_host: "https://app.com"
+defmodule CloudStorage.CustomUploader do
+  use CloudStorage.Uploader,
+    bucket: "app-bucket",
+    storage_dir: "app-dir",
+    asset_host: "https://app.com"
 end
 
-defmodule Sendup.RuntimeUploader do
-  use Sendup.Uploader
+defmodule CloudStorage.RuntimeUploader do
+  use CloudStorage.Uploader
 
   @impl true
   def storage_dir(_) do
-    Sendup.Utils.timestamp() <> "/uploads"
+    CloudStorage.Utils.timestamp() <> "/uploads"
   end
 
   @impl true
@@ -20,9 +23,9 @@ defmodule Sendup.RuntimeUploader do
   end
 end
 
-defmodule Sendup.UploaderTest do
-  use Sendup.DataCase, async: true
-  alias Sendup.{DefaultUploader, CustomUploader, RuntimeUploader}
+defmodule CloudStorage.UploaderTest do
+  use CloudStorage.DataCase, async: true
+  alias CloudStorage.{DefaultUploader, CustomUploader, RuntimeUploader}
 
   describe "setup default uploader" do
     test "should have default options" do

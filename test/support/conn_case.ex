@@ -1,4 +1,4 @@
-defmodule Sendup.ConnCase do
+defmodule CloudStorage.ConnCase do
   use ExUnit.CaseTemplate
 
   using do
@@ -6,18 +6,18 @@ defmodule Sendup.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      alias Sendup.Dummy.Router.Helpers, as: Routes
+      alias CloudStorage.Dummy.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint Sendup.Dummy.Endpoint
+      @endpoint CloudStorage.Dummy.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Sendup.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(CloudStorage.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Sendup.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(CloudStorage.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

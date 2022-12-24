@@ -1,7 +1,7 @@
-defmodule Sendup.UploadsTest do
-  use Sendup.DataCase, async: true
-  import Sendup.Factory
-  alias Sendup.Uploads
+defmodule CloudStorage.UploadsTest do
+  use CloudStorage.DataCase, async: true
+  import CloudStorage.Factory
+  alias CloudStorage.Uploads
 
   describe "create/1" do
     @valid_params %{
@@ -39,7 +39,7 @@ defmodule Sendup.UploadsTest do
       initial_upload = insert!(:upload)
       refute initial_upload.uploaded
       assert {:ok, upload} = Uploads.mark_as_uploaded(initial_upload)
-      [uploaded_upload] = Sendup.Repo.all(Sendup.Uploads.Upload)
+      [uploaded_upload] = CloudStorage.Repo.all(CloudStorage.Uploads.Upload)
       assert uploaded_upload.reference == upload.reference
       assert uploaded_upload.reference == initial_upload.reference
       assert upload.uploaded

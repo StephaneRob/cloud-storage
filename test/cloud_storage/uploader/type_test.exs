@@ -1,6 +1,6 @@
-defmodule Sendup.Uploader.TypeTest do
-  use Sendup.DataCase, async: true
-  alias Sendup.MyUploader.Type
+defmodule CloudStorage.Uploader.TypeTest do
+  use CloudStorage.DataCase, async: true
+  alias CloudStorage.MyUploader.Type
 
   @object %{key: "myupload/test.jpg", url: "https://cdn.com/myupload/test.jpg"}
   @key "myupload/test.jpg"

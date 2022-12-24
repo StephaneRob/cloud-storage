@@ -1,3 +1,3 @@
-defmodule Sendup.MyUploader do
-  use Sendup.Uploader, asset_host: "https://cdn.com"
+defmodule CloudStorage.MyUploader do
+  use CloudStorage.Uploader, asset_host: "https://cdn.com"
 end

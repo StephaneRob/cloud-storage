@@ -1,4 +1,4 @@
-defmodule Sendup.Uploader do
+defmodule CloudStorage.Uploader do
   @callback bucket() :: binary()
   @callback storage() :: module()
   @callback storage_dir(scope :: map()) :: binary()
@@ -7,11 +7,11 @@ defmodule Sendup.Uploader do
 
   defmacro __using__(options) do
     quote do
-      @behaviour Sendup.Uploader
+      @behaviour CloudStorage.Uploader
 
-      use Sendup.Uploader.Store, unquote(options)
-      use Sendup.Uploader.Controller
-      use Sendup.Uploader.Type
+      use CloudStorage.Uploader.Store, unquote(options)
+      use CloudStorage.Uploader.Controller
+      use CloudStorage.Uploader.Type
     end
   end
 end

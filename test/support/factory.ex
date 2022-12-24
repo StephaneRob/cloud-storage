@@ -1,19 +1,19 @@
-defmodule Sendup.Factory do
+defmodule CloudStorage.Factory do
   @moduledoc false
-  alias Sendup.Repo
+  alias CloudStorage.Repo
 
   def build(:log) do
-    %Sendup.Uploads.Log{}
+    %CloudStorage.Uploads.Log{}
   end
 
   def build(:user) do
-    %Sendup.User{
+    %CloudStorage.User{
       name: "#{System.monotonic_time()}"
     }
   end
 
   def build(:upload) do
-    %Sendup.Uploads.Upload{
+    %CloudStorage.Uploads.Upload{
       reference: Ecto.UUID.generate(),
       key: "myuploads/#{Ecto.UUID.generate()}.jpg",
       filename: "test.jpg",

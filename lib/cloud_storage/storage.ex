@@ -1,5 +1,5 @@
-defmodule Sendup.Storage do
-  alias Sendup.Uploads.Upload
+defmodule CloudStorage.Storage do
+  alias CloudStorage.Uploads.Upload
 
   @callback presign_url(uploader :: module(), upload :: Upload.t()) ::
               {:ok, binary()} | {:error, binary()}
@@ -13,6 +13,6 @@ defmodule Sendup.Storage do
     module(upload.storage).delete(upload)
   end
 
-  defp module(:s3), do: Sendup.Storage.S3
+  defp module(:s3), do: CloudStorage.Storage.S3
   defp module(_), do: raise("Not implemented")
 end

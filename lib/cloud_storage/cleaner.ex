@@ -1,5 +1,5 @@
-defmodule Sendup.Cleaner do
-  alias Sendup.Uploads
+defmodule CloudStorage.Cleaner do
+  alias CloudStorage.Uploads
   use GenServer
 
   @interval :timer.hours(12)

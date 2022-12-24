@@ -1,13 +1,13 @@
-defmodule Sendup.RouterTest do
-  use Sendup.DataCase, async: true
+defmodule CloudStorage.RouterTest do
+  use CloudStorage.DataCase, async: true
   import Phoenix.ConnTest
 
   defmodule MyappRouter do
     use Phoenix.Router
-    import Sendup.Router
+    import CloudStorage.Router
 
     scope "/whatever" do
-      sendup_routes("/uploads", Sendup.MyUploader.Controller, as: :myuploads)
+      cloud_storage_routes("/uploads", CloudStorage.MyUploader.Controller, as: :myuploads)
     end
   end
 

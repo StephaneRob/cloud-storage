@@ -1,9 +1,9 @@
-defmodule Sendup.DataCase do
+defmodule CloudStorage.DataCase do
   use ExUnit.CaseTemplate
 
   using do
     quote do
-      alias Sendup.Repo
+      alias CloudStorage.Repo
 
       import Ecto
       import Ecto.Changeset
@@ -12,10 +12,10 @@ defmodule Sendup.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Sendup.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(CloudStorage.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Sendup.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(CloudStorage.Repo, {:shared, self()})
     end
 
     :ok
