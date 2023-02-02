@@ -1,4 +1,8 @@
 defmodule CloudStorage.Uploads.DeleteLog do
+  @moduledoc """
+  # TODO
+  """
+
   use Ecto.Schema
 
   @type t :: %__MODULE__{

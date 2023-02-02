@@ -1,4 +1,8 @@
 defmodule CloudStorage.Uploads do
+  @moduledoc """
+  # TODO
+  """
+
   import Ecto.Query
   alias Ecto.Multi
   alias CloudStorage.Uploads.{DeleteLog, Log, Upload}

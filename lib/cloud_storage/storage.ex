@@ -1,4 +1,8 @@
 defmodule CloudStorage.Storage do
+  @moduledoc """
+  # TODO
+  """
+
   alias CloudStorage.Uploads.Upload
 
   @callback presign_url(uploader :: module(), upload :: Upload.t()) ::

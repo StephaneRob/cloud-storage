@@ -1,4 +1,8 @@
 defmodule CloudStorage.Uploader do
+  @moduledoc """
+  ### Usage
+
+  """
   @callback bucket() :: binary()
   @callback storage() :: module()
   @callback storage_dir(scope :: map()) :: binary()

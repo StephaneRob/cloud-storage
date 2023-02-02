@@ -1,4 +1,8 @@
 defmodule CloudStorage.Storage.S3 do
+  @moduledoc """
+  # TODO
+  """
+
   @behaviour CloudStorage.Storage
 
   @impl true

@@ -1,7 +1,11 @@
 defmodule CloudStorage.Uploader.Type do
+  @moduledoc false
+
   defmacro __using__(_) do
     quote do
       defmodule Type do
+        @moduledoc false
+
         use Ecto.Type
 
         @uploader __MODULE__ |> Module.split() |> Enum.drop(-1) |> Module.concat()

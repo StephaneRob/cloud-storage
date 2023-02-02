@@ -1,4 +1,8 @@
 defmodule CloudStorage.Uploads.Upload do
+  @moduledoc """
+  # TODO
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 

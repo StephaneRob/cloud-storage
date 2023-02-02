@@ -1,4 +1,8 @@
 defmodule CloudStorage.Router do
+  @moduledoc """
+  # TODO
+  """
+
   defmacro cloud_storage_routes(path, controller, options \\ []) do
     quote bind_quoted: binding() do
       import Phoenix.Router

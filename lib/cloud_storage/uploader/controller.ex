@@ -1,4 +1,6 @@
 defmodule CloudStorage.Uploader.Controller do
+  @moduledoc false
+
   import Phoenix.Controller
   alias Inspect.Ecto.Changeset
   alias CloudStorage.Storage
@@ -9,6 +11,8 @@ defmodule CloudStorage.Uploader.Controller do
   defmacro __using__(_) do
     quote do
       defmodule Controller do
+        @moduledoc false
+
         @uploader __MODULE__ |> Module.split() |> Enum.drop(-1) |> Module.concat()
 
         use Phoenix.Controller

@@ -1,4 +1,8 @@
 defmodule Mix.Tasks.CloudStorage.Gen.Upload do
+  @moduledoc """
+  # TODO
+  """
+
   use Mix.Task
   import Mix.Generator
   alias CloudStorage.Utils

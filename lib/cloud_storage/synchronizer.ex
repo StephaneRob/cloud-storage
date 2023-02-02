@@ -1,4 +1,8 @@
 defmodule CloudStorage.Synchronizer do
+  @moduledoc """
+  # TODO
+  """
+
   alias CloudStorage.Uploads
   use GenServer
 

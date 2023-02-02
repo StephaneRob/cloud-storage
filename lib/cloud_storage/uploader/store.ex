@@ -1,4 +1,6 @@
 defmodule CloudStorage.Uploader.Store do
+  @moduledoc false
+
   defmacro __using__(options) do
     quote do
       @options unquote(options)

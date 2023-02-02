@@ -1,14 +1,6 @@
 # CloudStorage
 
-Direct upload backend.
-
-**TODO:**
-
-- [ ] Upload schema
-- [ ] Upload controller
-- [ ] Upload field type
-- [ ] Set up orphan tracking
-- [ ] Set up clean orphan uploads
+Direct upload with Elixir / Phoenix
 
 ## Installation
 
