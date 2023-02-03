@@ -22,9 +22,9 @@ be found at <https://hexdocs.pm/cloud_storage>.
 ## How it works?
 
 CloudStorage is a direct upload backend and it's compatible with multiple storage.
-The idea is to call an API endpoint to get a presigned url, upload the file directly to the storage and let know the backend that the file is correclty uploaded.
+The front end request a presigned url to a configured endpoint, upload the file directly to the storage and let the backend know that the file is correclty uploaded.
 
-The response from the inital call to get presigned url looks like this:
+Example of presigned url request payload:
 
 ```json
 {
@@ -34,7 +34,7 @@ The response from the inital call to get presigned url looks like this:
 }
 ```
 
-The object key is the value that we want to save into our model.
+The key is the value that we want to save into our model to reference the upload
 
 ### Private files
 
@@ -72,7 +72,7 @@ mix ecto.migrate
 
 ```elixir
 # my_app/uploaders/default_uploader.ex
-defmodule MyApp.Uploaders.DefaultUploader
+defmodule MyApp.Uploaders.DefaultUploader do
   use CloudStorage.Uploader
 end
 ```
@@ -86,7 +86,7 @@ defmodule MyAppWeb.Router do
   import CloudStorage.Router
 
   scope "/api" do
-    cloud_storage_routes("/uploads", MyApp.Uploaders.DefaultUploader.Controller)
+    cloud_storage_routes "/uploads", MyApp.Uploaders.DefaultUploader.Controller
   end
 
   #...

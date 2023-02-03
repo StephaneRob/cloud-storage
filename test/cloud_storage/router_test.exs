@@ -7,7 +7,7 @@ defmodule CloudStorage.RouterTest do
     import CloudStorage.Router
 
     scope "/whatever" do
-      cloud_storage_routes("/uploads", CloudStorage.MyUploader.Controller, as: :myuploads)
+      cloud_storage_routes "/uploads", CloudStorage.MyUploader.Controller, as: :myuploads
     end
   end
 

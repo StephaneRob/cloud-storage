@@ -18,7 +18,7 @@ defmodule CloudStorage.Dummy.Router do
   import CloudStorage.Router
 
   scope "/user" do
-    cloud_storage_routes("/avatar_uploads", CloudStorage.MyUploader.Controller, as: :my_uploader)
+    cloud_storage_routes "/avatar_uploads", CloudStorage.MyUploader.Controller, as: :my_uploader
   end
 end
 
